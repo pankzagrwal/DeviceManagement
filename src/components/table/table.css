@@ -1,0 +1,27 @@
+.cell {
+    /*border: 1px solid #CCC;*/
+    float: left;
+    padding: 12px;
+    width: 200px;
+}
+
+.header .table-row {
+  background-color: #CCC;
+}
+
+.table-component,
+.table-row {
+  overflow: hidden;
+}
+
+.table-row {
+  border: 1px solid #CCC;
+}
+
+.notAvl {
+  background-color: #f53b3b;
+}
+
+.avl {
+  background-color: #39d639;
+}

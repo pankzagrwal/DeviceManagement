@@ -1,0 +1,38 @@
+.filter {
+  position: relative;
+  width: 100%;
+}
+
+.filter-current {
+  border: 1px solid #CCC;
+}
+
+.filter-component .selection-option {
+  border: 1px solid #CCC;
+  width: 100%;
+  position: absolute;
+  width: inherit;
+  background-color: white;
+  z-index: 9999;
+}
+
+.selection-option li {
+  cursor: pointer;
+  padding-left: 4px;
+  padding-top: 6px;
+}
+
+.selection-option li:hover {
+  background-color: #CCC;
+}
+
+/*.filter-component {
+  padding: 12px;
+}*/
+
+.filter-component .glyphicon-chevron-up,
+.filter-component .glyphicon-chevron-down {
+  position: absolute;
+    right: 5px;
+    top: 3px;
+}
