@@ -2,7 +2,13 @@
     /*border: 1px solid #CCC;*/
     float: left;
     padding: 12px;
-    width: 200px;
+    width: 20%;
+}
+
+.cell input {
+	border: none;
+	padding-left: 10px;
+	width: 100%;
 }
 
 .header .table-row {

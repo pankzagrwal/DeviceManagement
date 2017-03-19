@@ -1,0 +1,1 @@
+C:\Program Files\MongoDB\Server\3.2\bin>mongod --storageEngine=mmapv1 --dbpath E:/panky/db

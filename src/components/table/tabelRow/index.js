@@ -7,7 +7,7 @@ var TableRow = React.createClass({
 
   handleDeviceReturn: function () {
 
-    this.props.handleReturn(this.props.rowItem.id)
+    this.props.handleReturn(this.props.rowItem.name)
   },
 
   handleDeviceAllocation: function () {
@@ -15,8 +15,9 @@ var TableRow = React.createClass({
 
     this.props.handleAllocation({
       allocated_to: input.value,
-      id: this.props.rowItem.id
-    })
+      name: this.props.rowItem.name
+    });
+    input.value = "";
   },
 
   render: function () {

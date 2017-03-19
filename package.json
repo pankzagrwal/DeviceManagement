@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/pankzagrwal/reactLearn#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-loader": "^6.4.0",
     "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -28,9 +29,13 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.23.0",
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "mongodb": "^2.2.24",
+    "mongoose": "^4.8.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
     "style-loader": "^0.13.2",
     "webpack": "2.2.1"
   },
