@@ -33,12 +33,12 @@ var TableRow = React.createClass({
         </div>
         <div className = {"cell " + (row.isAvl ? "" : "hide")}>
           <span>
-            <input placeholder = "your name" ref = {(input) => {this.textInput = input}}/>
+            <input type= "text" placeholder = "your name" ref = {(input) => {this.textInput = input}}/>
           </span>
         </div>
         <div className = {"cell " + (row.isAvl ? "" : "hide")}>
           <span>
-            <button onClick = {this.handleDeviceAllocation}>Allocate Me</button>
+            <button className = "allocate_button buttn" onClick = {this.handleDeviceAllocation}>Allocate Me</button>
           </span>
         </div>
         <div className = {"cell " + (row.isAvl ? "hide" : "")}>
@@ -48,7 +48,7 @@ var TableRow = React.createClass({
           <span> {row.allocation_date} </span>
         </div>
         <div className = {"cell " + (row.isAvl ? "hide" : "")}>
-          <button onClick = {this.handleDeviceReturn}>Return</button>
+          <button className = "return_button buttn" onClick = {this.handleDeviceReturn}>Return</button>
         </div>
       </div>
     )

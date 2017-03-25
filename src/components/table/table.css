@@ -25,9 +25,23 @@
 }
 
 .notAvl {
-  background-color: #f53b3b;
+  background-color: rgba(245, 59, 59, 0.65);
 }
 
 .avl {
-  background-color: #39d639;
+  background-color: rgba(57, 214, 57, 0.8);
+}
+
+.buttn {
+    border: none;
+    padding: 4px;
+    text-align: center;
+    width: 100%;
+    color: black;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.buttn:hover {
+  background-color: #CCC;
 }

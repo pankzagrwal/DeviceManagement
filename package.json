@@ -31,11 +31,13 @@
     "babel-register": "^6.23.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "method-override": "^2.3.8",
     "mongodb": "^2.2.24",
     "mongoose": "^4.8.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "style-loader": "^0.13.2",
     "webpack": "2.2.1"
   },
