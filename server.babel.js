@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import deviceRequestHandler from './api/deviceRequestHandler.js';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
+import routes from './routes/route.js';
 
 mongoose.connect('mongodb://localhost/db');
 
@@ -48,22 +49,7 @@ function clientErrorHandler (err, req, res, next) {
 }
 
 
-//Get All Devices
-app.get('/devices', function (req, res) {
-  deviceRequestHandler.getAllDevices(req, res);
-});
-
-
-//Update Device Status. Allocation/Return
-app.put('/devices/update', function (req, res) {
-  deviceRequestHandler.updateDeviceStatus(req, res);
-});
-
-
-//Add New Device
-app.post('/device/add', function (req, res) {
-	deviceRequestHandler.addNewDevice(req, res);
-})
+routes(app);
 
 app.listen(process.env.PORT || 3000);
 
