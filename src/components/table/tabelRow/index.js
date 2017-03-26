@@ -14,7 +14,7 @@ var TableRow = React.createClass({
     var input = this.textInput;
 
     this.props.handleAllocation({
-      allocated_to: input.value,
+      allocated_to: this.props.username,
       name: this.props.rowItem.name
     });
     input.value = "";
@@ -33,7 +33,7 @@ var TableRow = React.createClass({
         </div>
         <div className = {"cell " + (row.isAvl ? "" : "hide")}>
           <span>
-            <input type= "text" placeholder = "your name" ref = {(input) => {this.textInput = input}}/>
+            <input type= "text" placeholder = "your name"  value = {this.props.username} disabled/>
           </span>
         </div>
         <div className = {"cell " + (row.isAvl ? "" : "hide")}>
@@ -47,9 +47,12 @@ var TableRow = React.createClass({
         <div className = {"cell " + (row.isAvl ? "hide" : "")}>
           <span> {row.allocation_date} </span>
         </div>
-        <div className = {"cell " + (row.isAvl ? "hide" : "")}>
+        { row.allocated_to === this.props.username && 
+          <div className = {"cell " + (row.isAvl ? "hide" : "")}>
           <button className = "return_button buttn" onClick = {this.handleDeviceReturn}>Return</button>
         </div>
+        }
+        
       </div>
     )
   }

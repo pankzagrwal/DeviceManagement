@@ -12,19 +12,20 @@ var Filter = React.createClass({
   },
 
   optionSelected: function (e) {
-    var ref = parseInt(e.target.dataset.ref, 10);
+    var ref = e.target.dataset.ref;
     var listOptions = this.listOptions;
 
     for (let key in  listOptions) {
-      if (listOptions[key].id === ref) {
+      if (listOptions[key].name === ref) {
         this.setState({
           currentFilter: listOptions[key].name,
           filterOpen: !this.state.filterOpen
-        })
+        });
+        break;
       }
     }
     
-    this.props.filterChanged(parseInt(ref, 10));
+    this.props.filterChanged(ref);
   },
 
   getInitialState: function () {
@@ -52,7 +53,7 @@ var Filter = React.createClass({
               {
                 this.props.listOptions.map(function (item, i) {
                   return (
-                    <li key = {item.id} data-ref ={item.id} onClick = {oThis.optionSelected}>{item.name}</li>
+                    <li key = {item.name} data-ref ={item.name} onClick = {oThis.optionSelected}>{item.name}</li>
                   )
                 })
               }

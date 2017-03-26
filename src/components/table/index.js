@@ -37,7 +37,7 @@ var Table = React.createClass({
         {
           oThis.props.deviceList.map(function (row) {
             return (
-              <TabelRow key = {row.name} rowItem = {row} handleReturn = {oThis.handleReturn} handleAllocation = {oThis.handleAllocation}/>
+              <TabelRow username = {oThis.props.username} key = {row.name} rowItem = {row} handleReturn = {oThis.handleReturn} handleAllocation = {oThis.handleAllocation}/>
             )
           })
         }

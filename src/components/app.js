@@ -28,19 +28,23 @@ var listOptions = [
 
 var App = React.createClass({
 
-  filterChanged: function (id) {
+  filterChanged: function (name) {
     var deviceList = this.deviceList,
-        device;
-    if (id === 0) {
+        device = {
+          name: "No Device"
+        };
+    if (name === "All") {
       this.setState({
         deviceList: deviceList
       })
       return;
     }
     for (const key in deviceList) {
-        if (deviceList[key].name === id) {
+        if (deviceList[key].name === name) {
           device = deviceList[key];
+          break;
         }
+        
     }
 
     this.setState({
@@ -128,22 +132,36 @@ var App = React.createClass({
 
   getInitialState: function () {
       return {
-        listOptions: listOptions,
-        deviceList: []
+        listOptions: [],
+        deviceList: [],
+        username: null
       }
   },
 
   componentDidMount: function () {
     var oThis = this;
-    axios.get("/devices").then(function (devices) {
-      oThis.deviceList = devices.data;
+
+    axios.get("/user").then(function (res) {
+      sessionStorage.setItem('username', res.data.user);
       oThis.setState({
-        deviceList: devices.data
-      })
+        username: res.data.user
+      });
     })
     .catch(function (error) {
       console.log(error);
     })
+
+
+    axios.get("/devices").then(function (devices) {
+      oThis.deviceList = devices.data;
+      oThis.setState({
+        deviceList: devices.data,
+        listOptions: [{name: "All"}, ...devices.data]
+      })
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
   },
 
   render: function () {
@@ -158,12 +176,15 @@ var App = React.createClass({
           </div>
         </div>
         <div className="new-device-layout">
-          <NewDevice isLoggedIn={true} addDevice = {this.addDevice}/>
+          <NewDevice isLoggedIn={this.state.username === 'admin@admin.com'} addDevice = {this.addDevice}/>
         </div>
         <div className = "table-layout row">
           <div className = "col-md-11 col-lg-11 col-sm-11">
-            <Table deviceList = {this.state.deviceList} deviceReturned = {this.deviceReturned} deviceAllocate = {this.deviceAllocate}/>
+            <Table username = {this.state.username} deviceList = {this.state.deviceList} deviceReturned = {this.deviceReturned} deviceAllocate = {this.deviceAllocate}/>
           </div>
+        </div>
+        <div className={"login-container row " +  (this.state.username ? "hide" : "")}>
+          <a className = "col-md-11" href='/login.html'>Log In to Access</a>
         </div>
     </div>
     )

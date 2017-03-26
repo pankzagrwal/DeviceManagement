@@ -7,9 +7,20 @@
 }
 
 .table-layout {
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 .table-component {
 	font-family: cursive;
+}
+
+.login-container {
+	text-align: center;
+    padding: 34px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.new-device-layout {
+	margin-top: 14px;
 }

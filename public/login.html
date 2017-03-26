@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\
+        <style>
+            .login-layout {
+                width: 50%;
+                float: left;
+                padding: 50px;
+                border-right: 1px solid #CCC;
+                margin-top: 12px;
+            }
+
+            .signup-layout {
+                width: 50%;
+                float: left;
+                padding: 50px;
+                margin-top: 12px;
+            }
+        </style>
+</head>
+<body>
+    <div class = "login-layout">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" required="true">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" required="true" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg">Login</button>
+        </form>
+    </div>
+
+    <div class="signup-layout">
+        <form action="/signup" method="post">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" required="true">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" required="true" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg">SignUp</button>
+        </form>
+    </div>
+
+</body>
+</html>
