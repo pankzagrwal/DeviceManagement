@@ -6,25 +6,13 @@ import NewDevice from './newDevice/index.js';
 import styles from './app.css';
 import axios from 'axios';
 
+import {fetchDevices} from '../actions/deviceActions.js';
+import {filterChanged} from '../actions/filterActions.js';
 
-var listOptions = [
-  {
-    name: "ALL",
-    id: 0
-  },
-  {
-    name: "iphone",
-    id: 1
-  },
-  {
-    name: "ipad",
-    id: 2
-  },
-  {
-    name: "nexus",
-    id: 3
-  }
-];
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+
 
 var App = React.createClass({
 
@@ -152,7 +140,9 @@ var App = React.createClass({
     })
 
 
-    axios.get("/devices").then(function (devices) {
+    oThis.props.fetchDevices();
+
+    /*axios.get("/devices").then(function (devices) {
       oThis.deviceList = devices.data;
       oThis.setState({
         deviceList: devices.data,
@@ -161,10 +151,11 @@ var App = React.createClass({
     })
     .catch(function (error) {
         console.log(error);
-    });
+    });*/
   },
 
   render: function () {
+    console.log(this.props)
     return (
      <div className = "app-component container">
         <div className="top-layout row">
@@ -172,7 +163,7 @@ var App = React.createClass({
               'Lorem Ipsum'
           </div>
           <div className="top-filter col-md-3 col-lg-3 col-sm-3">
-            <Filter listOptions = {this.state.listOptions} filterChanged = {this.filterChanged}/>
+            <Filter listOptions = {this.props.listOptions} filterChanged = {this.props.filterChanged}/>
           </div>
         </div>
         <div className="new-device-layout">
@@ -180,7 +171,7 @@ var App = React.createClass({
         </div>
         <div className = "table-layout row">
           <div className = "col-md-11 col-lg-11 col-sm-11">
-            <Table username = {this.state.username} deviceList = {this.state.deviceList} deviceReturned = {this.deviceReturned} deviceAllocate = {this.deviceAllocate}/>
+            <Table username = {this.state.username} deviceList = {this.props.deviceList} deviceReturned = {this.deviceReturned} deviceAllocate = {this.deviceAllocate}/>
           </div>
         </div>
         <div className={"login-container row " +  (this.state.username ? "hide" : "")}>
@@ -189,7 +180,36 @@ var App = React.createClass({
     </div>
     )
   }
-})
+});
 
 
-module.exports = App;
+const getVisibleDevices = function (list, filter) {
+  debugger;
+  switch (filter) {
+    case "ALL": {
+      return list
+    }
+    default: {
+      return list.filter(function (t) {
+          t.name === filter
+      })
+    }
+  }
+}
+
+
+module.exports = connect(function (state,ownProps) {
+  console.log(state);
+  return {
+    deviceList: getVisibleDevices(state.devices.devices, state.filter),
+    listOptions: state.devices.devices
+}}, function (dispatch) {
+  return {
+    fetchDevices: function () {
+      return dispatch(fetchDevices())
+    },
+    filterChanged: function (name) {
+      return dispatch(filterChanged(name))
+    }
+  }
+})(App);

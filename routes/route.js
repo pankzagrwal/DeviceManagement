@@ -5,7 +5,7 @@ module.exports = function (app, passport) {
 
 
 	//Get All Devices
-	app.get('/devices', isAuthenticated, function (req, res) {
+	app.get('/devices', function (req, res) {
 	  deviceRequestHandler.getAllDevices(req, res);
 	});
 
@@ -58,8 +58,6 @@ module.exports = function (app, passport) {
 
 	    // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
 	    // you can do this however you want with whatever variables you set up
-	    debugger;
-	    //console.log("req", req)
 	    if (req.isAuthenticated())
 	        return next();
 
