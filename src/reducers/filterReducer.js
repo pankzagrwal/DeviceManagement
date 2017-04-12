@@ -1,5 +1,4 @@
-export default function reducer (state = "ALL", action) {
-	console.log("GGG")
+export function filter (state = "ALL", action) {
 	switch (action.type) {
 		case "FILTER_CHANGED" : {
 			return action.filter

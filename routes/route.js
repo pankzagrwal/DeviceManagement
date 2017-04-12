@@ -5,7 +5,7 @@ module.exports = function (app, passport) {
 
 
 	//Get All Devices
-	app.get('/devices', function (req, res) {
+	app.get('/devices', isAuthenticated, function (req, res) {
 	  deviceRequestHandler.getAllDevices(req, res);
 	});
 

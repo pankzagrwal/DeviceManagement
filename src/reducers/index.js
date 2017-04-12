@@ -1,11 +1,13 @@
 import {combineReducers} from "redux";
 
-import devices from "./deviceReducer";
-import filter from "./filterReducer"
+import * as devices from "./deviceReducer";
+import * as filter from "./filterReducer";
+import * as user from "./userReducer";
 
-export default combineReducers({
-	devices,
-	filter
-})
+console.log(devices)
+
+const allReducer = Object.assign({}, devices, filter, user)
+console.log(allReducer);
+export default combineReducers(allReducer);
 
 //export default devices;
