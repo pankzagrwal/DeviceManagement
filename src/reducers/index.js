@@ -7,7 +7,6 @@ import * as user from "./userReducer";
 console.log(devices)
 
 const allReducer = Object.assign({}, devices, filter, user)
-console.log(allReducer);
 export default combineReducers(allReducer);
 
 //export default devices;

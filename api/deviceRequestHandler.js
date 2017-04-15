@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import Device from '../database/device.js';
+import Device from '../model/device.js';
 import errorCode from './errorCode.js';
 
 var getAllDevices = function(req, res) {
 
     Device.find({}, function(err, devices) {
         if (err) {
-            console.log("EROOOOOOR")
+            console.log("EROOOOOOR");
         }
         res.json(devices);
     })

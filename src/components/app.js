@@ -6,7 +6,7 @@ import NewDevice from './newDevice/index.js';
 import styles from './app.css';
 import axios from 'axios';
 
-import {fetchDevices, addDevice} from '../actions/deviceActions.js';
+import {fetchDevices, addDevice, allocateDevice, returnDevice} from '../actions/deviceActions.js';
 import {filterChanged} from '../actions/filterActions.js';
 import {fetchUser} from '../actions/userActions.js';
 
@@ -44,56 +44,13 @@ var App = React.createClass({
   deviceReturned: function (name) {
     const deviceList = this.state.deviceList;
     var oThis = this;
-    axios({
-      url: "devices/update",
-      method: "PUT",
-      data: {
-      name: name,
-      allocated_date: "",
-      allocated_to: "",
-      isAvl: true
-    }}).then(function (res) {
-      for (const key in deviceList) {
-          if (deviceList[key].name === res.data.name) {
-              deviceList[key] = res.data;
-              break;
-          }
-      }
-
-      oThis.setState({
-        deviceList: deviceList
-      })
-
-    }).catch(function (err) {
-      console.log(err)
-    })
+    oThis.props.returnDevice(name);
   },
 
   deviceAllocate: function (config) {
     const deviceList = this.state.deviceList;
     var oThis = this;
-    axios({
-      url: "devices/update",
-      method: "PUT",
-      data: {
-      name: config.name,
-      allocated_date: (new Date()).toDateString(),
-      allocated_to: config.allocated_to,
-      isAvl: false
-    }}).then(function (res) {
-      for (const key in deviceList) {
-          if (deviceList[key].name === res.data.name) {
-              deviceList[key] = res.data;
-          }
-      }
-
-      oThis.setState({
-        deviceList: deviceList
-      })
-
-    }).catch(function (err) {
-      console.log(err)
-    })
+    oThis.props.allocateDevice(config);
   },
 
   addDevice: function (name) {
@@ -138,7 +95,7 @@ var App = React.createClass({
             <Table username = {this.props.user.user} deviceList = {this.props.deviceList} deviceReturned = {this.deviceReturned} deviceAllocate = {this.deviceAllocate}/>
           </div>
         </div>
-        <div className={"login-container row " +  (this.state.username ? "hide" : "")}>
+        <div className={"login-container row " +  (this.props.user.user ? "hide" : "")}>
           <a className = "col-md-11" href='/login.html'>Log In to Access</a>
         </div>
     </div>
@@ -175,6 +132,12 @@ module.exports = connect(function (state,ownProps) {
     },
     addDevice: function (name) {
         return dispatch(addDevice(name))
+    },
+    allocateDevice: function (config) {
+      return dispatch(allocateDevice(config))
+    },
+    returnDevice: function (name) {
+      return dispatch(returnDevice(name))
     },
     filterChanged: function (name) {
       return dispatch(filterChanged(name))

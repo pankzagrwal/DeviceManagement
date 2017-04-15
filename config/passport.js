@@ -2,7 +2,6 @@ import LocalStrategy from 'passport-local';
 import User from '../model/user.js';
 
 
-// expose this function to our app using module.exports
 module.exports = function(passport) {
 
 	// =========================================================================

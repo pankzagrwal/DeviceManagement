@@ -21,6 +21,8 @@ module.exports = function (app, passport) {
 		deviceRequestHandler.addNewDevice(req, res);
 	});
 
+
+	//Get user info
 	app.get('/user', function (req, res) {
 		if (req.user) {
 			res.json({user: req.user.local.email});
@@ -34,14 +36,14 @@ module.exports = function (app, passport) {
 
 	// process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/', // redirect to the secure profile section
+        successRedirect : '/', // redirect to the Dashboared
         failureRedirect : '/login.html?signup=true', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
 
 	app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
+        successRedirect : '/', // redirect to the Dashboard
         failureRedirect : '/login.html', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -54,7 +56,6 @@ module.exports = function (app, passport) {
 
     function isAuthenticated(req, res, next) {
 
-	    // do any checks you want to in here
 
 	    // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
 	    // you can do this however you want with whatever variables you set up

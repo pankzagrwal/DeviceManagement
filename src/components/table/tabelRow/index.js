@@ -11,13 +11,13 @@ var TableRow = React.createClass({
   },
 
   handleDeviceAllocation: function () {
-    var input = this.textInput;
+    //var input = this.textInput;
 
     this.props.handleAllocation({
       allocated_to: this.props.username,
       name: this.props.rowItem.name
     });
-    input.value = "";
+    //input.value = "";
   },
 
   render: function () {

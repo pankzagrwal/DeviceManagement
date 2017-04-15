@@ -10,11 +10,14 @@ var deviceSchema = new Schema ({
   allocated_to: String,
   allocation_date: String,
   return_date: String,
-  isAvl: Boolean
+  isAvl: Boolean,
+  deviceId: {type: Number, unique:true}
 });
 
 //Create Device Model
 
 var Device = mongoose.model('Device', deviceSchema);
+
+
 
 module.exports = Device;
